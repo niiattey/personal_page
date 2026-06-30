@@ -57,74 +57,62 @@
                 extend: {
                     colors: {
                         'primary-bg': '#FFFFFF',
-                        'secondary-bg': '#F5F5F3',
+                        'secondary-bg': '#F8F9FA',
                         'accent-color': '#00603a',
                         'accent-dark': '#004d2e',
-                        'main-text': '#0f0f0e',
-                        'secondary-text': '#3d3d3b',
+                        'main-text': '#111827',
+                        'secondary-text': '#4B5563',
+                        'border-color': '#E5E7EB',
                     },
                     fontFamily: {
-                        display: ['Calibri', 'Candara', '"Segoe UI"', 'sans-serif'],
-                        sans: ['Calibri', 'Candara', '"Segoe UI"', 'sans-serif'],
-                        mono: ['"SF Mono"', 'Consolas', '"Liberation Mono"', 'Menlo', 'monospace'],
+                        display: ['Inter', 'Calibri', 'sans-serif'],
+                        sans: ['Inter', 'Calibri', 'sans-serif'],
+                        mono: ['"SF Mono"', 'Consolas', 'monospace'],
                     },
-                    fontSize: {
-                        xs: '0.85rem',
-                        sm: '0.95rem',
-                        base: '1.08rem',
-                        lg: '1.2rem',
-                        xl: '1.35rem',
-                        '2xl': '1.65rem',
-                        '3xl': '2.05rem',
-                        '4xl': '2.5rem',
-                        '5xl': '3.25rem',
-                        '6xl': '4.25rem',
-                        '7xl': '5.25rem',
-                        '8xl': '6.5rem',
-                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                        'hover': '0 10px 25px -5px rgba(0, 96, 58, 0.15)',
+                    }
                 }
             }
         }
     </script>
 
     <style>
-        * {
-            box-sizing: border-box;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
         :root {
             --bg: #FFFFFF;
-            --bg-secondary: #F5F5F3;
-            --text: #0f0f0e;
-            --text-secondary: #3d3d3b;
-            --border: #e5e7eb;
-            --border-strong: #d1d5db;
-            --nav-bg: rgba(255, 255, 255, 0.96);
+            --bg-secondary: #F8F9FA;
+            --text: #111827;
+            --text-secondary: #4B5563;
+            --border: #E5E7EB;
+            --border-strong: #D1D5DB;
+            --nav-bg: rgba(255, 255, 255, 0.85);
             --card-bg: #FFFFFF;
         }
 
         html.dark {
             --bg: #0f1311;
             --bg-secondary: #161b18;
-            --text: #f2f4f2;
-            --text-secondary: #b8c0ba;
+            --text: #F3F4F6;
+            --text-secondary: #9CA3AF;
             --border: #2a322d;
             --border-strong: #3a443d;
-            --nav-bg: rgba(15, 19, 17, 0.96);
-            --card-bg: #161b18;
+            --nav-bg: rgba(15, 19, 17, 0.85);
+            --card-bg: #1A201C;
         }
 
         body {
-            font-family: Calibri, Candara, 'Segoe UI', sans-serif;
+            font-family: 'Inter', sans-serif;
             font-weight: 400;
-            line-height: 1.65;
+            line-height: 1.7;
             background: var(--bg);
             color: var(--text);
-            font-size: 115%;
             transition: background 0.3s ease, color 0.3s ease;
         }
 
-        /* Map utility classes to CSS vars so dark mode flows everywhere */
+        /* Dark Mode Utility Overrides */
         .bg-primary-bg { background: var(--bg) !important; }
         .bg-secondary-bg { background: var(--bg-secondary) !important; }
         .text-main-text { color: var(--text) !important; }
@@ -134,35 +122,14 @@
         .rule { background: var(--border); }
         .pub-line { border-top-color: var(--border); }
 
-        h1 {
-            font-family: Calibri, Candara, 'Segoe UI', sans-serif;
-            font-weight: 700;
+        h1, h2, h3, h4 {
             letter-spacing: -0.02em;
         }
 
-        h2 {
-            font-family: Calibri, Candara, 'Segoe UI', sans-serif;
-            font-weight: 700;
-            letter-spacing: -0.01em;
-        }
-
-        h3,
-        h4 {
-            font-family: Calibri, Candara, 'Segoe UI', sans-serif;
-            font-weight: 700;
-        }
-
-        *,
-        *::before,
-        *::after {
-            border-radius: 0 !important;
-        }
-
         .section-label {
-            font-family: Calibri, Candara, 'Segoe UI', sans-serif;
             font-size: 0.85rem;
-            font-weight: 500;
-            letter-spacing: 0.2em;
+            font-weight: 600;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
             color: #00603a;
         }
@@ -174,8 +141,8 @@
 
         .glass-nav {
             background: var(--nav-bg);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
         }
 
         .name-underline {
@@ -187,70 +154,147 @@
             content: '';
             position: absolute;
             left: 0;
-            bottom: -4px;
+            bottom: 4px;
             width: 0;
-            height: 4px;
+            height: 6px;
             background: #00603a;
-            transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 4px;
+            z-index: -1;
+            opacity: 0.4;
+            transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .name-underline.animated::after {
             width: 100%;
         }
 
-        .card-hover {
-            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        .card-surface {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 1.25rem; /* Modern rounded corners */
+            transition: all 0.3s ease;
         }
 
         .card-hover:hover {
             border-color: #00603a !important;
-            box-shadow: 4px 4px 0 0 #00603a22;
+            transform: translateY(-4px);
+            box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
         }
 
-        .social-btn-labeled {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 0 14px;
-            height: 2.75rem;
-            border: 1.5px solid var(--border-strong);
-            color: #00603a;
-            font-size: 0.95rem;
-            font-weight: 700;
-            transition: all 0.2s ease;
-            flex-shrink: 0;
+        html.dark .card-hover:hover {
+            box-shadow: 0 10px 25px -5px rgba(92, 201, 142, 0.15);
         }
 
-        html.dark .social-btn-labeled { color: #5cc98e; }
-
-        .social-btn-labeled:hover {
+        .btn-primary {
             background: #00603a;
             color: white;
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            background: #004d2e;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 96, 58, 0.2);
+        }
+
+        .btn-secondary {
+            border: 2px solid var(--border-strong);
+            color: var(--text);
+            border-radius: 0.75rem;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-secondary:hover {
             border-color: #00603a;
+            color: #00603a;
+            background: rgba(0, 96, 58, 0.05);
+        }
+
+        html.dark .btn-secondary:hover {
+            border-color: #5cc98e;
+            color: #5cc98e;
+            background: rgba(92, 201, 142, 0.1);
         }
 
         .social-btn {
-            width: 2.75rem;
-            height: 2.75rem;
-            display: flex;
+            display: inline-flex;
             align-items: center;
             justify-content: center;
-            border: 1.5px solid var(--border-strong);
-            color: #00603a;
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
             transition: all 0.2s ease;
-            flex-shrink: 0;
         }
 
         .social-btn:hover {
             background: #00603a;
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 96, 58, 0.2);
+        }
+
+        html.dark .social-btn:hover {
+            background: #5cc98e;
+            color: #0f1311;
+            box-shadow: 0 4px 12px rgba(92, 201, 142, 0.2);
+        }
+
+        .open-to-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 96, 58, 0.08);
+            color: #00603a;
+            border-radius: 9999px; /* Fully rounded pill */
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        html.dark .open-to-pill {
+            background: rgba(92, 201, 142, 0.15);
+            color: #5cc98e;
+        }
+
+        .open-to-pill:hover {
+            background: rgba(0, 96, 58, 0.15);
+        }
+
+        .tag-chip {
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+            transition: all 0.2s;
+        }
+
+        .tag-chip:hover {
             border-color: #00603a;
+            color: #00603a;
+            background: rgba(0, 96, 58, 0.05);
         }
 
         .fade-up {
             opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
+            transform: translateY(20px);
+            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .fade-up.visible {
@@ -268,70 +312,6 @@
             * { scroll-behavior: auto !important; }
         }
 
-        .open-to-pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            color: #00603a;
-            font-size: 0.98rem;
-            font-weight: 600;
-            white-space: nowrap;
-            transition: opacity 0.2s ease;
-        }
-
-        html.dark .open-to-pill { color: #5cc98e; }
-        .open-to-pill:hover { opacity: 0.7; }
-
-        #back-to-top {
-            opacity: 0;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            pointer-events: none;
-            transform: translateY(10px);
-        }
-
-        #back-to-top.visible {
-            opacity: 1;
-            pointer-events: all;
-            transform: translateY(0);
-        }
-
-        .nav-link-item.active {
-            color: #00603a !important;
-            font-weight: 700;
-        }
-
-        html.dark .nav-link-item.active { color: #5cc98e !important; }
-
-        .tag-chip {
-            font-family: Calibri, Candara, 'Segoe UI', sans-serif;
-            font-size: 0.85rem;
-            font-weight: 500;
-            padding: 3px 10px;
-            border: 1px solid var(--border-strong);
-            background: var(--bg-secondary);
-            color: var(--text-secondary);
-            transition: border-color 0.2s;
-        }
-
-        .tag-chip:hover {
-            border-color: #00603a;
-            color: #00603a;
-        }
-
-        .pub-line {
-            border-top: 1px solid var(--border);
-        }
-
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: var(--bg-secondary); }
-        ::-webkit-scrollbar-thumb { background: #00603a; }
-        ::-webkit-scrollbar-thumb:hover { background: #004d2e; }
-
-        .education-dock {
-            position: sticky;
-            top: 88px;
-        }
-
         .rule {
             height: 1px;
             background: var(--border);
@@ -341,24 +321,65 @@
             color: #00603a;
             font-weight: 600;
             text-decoration: underline;
-            text-decoration-color: #00603a44;
-            text-underline-offset: 3px;
+            text-decoration-color: rgba(0, 96, 58, 0.3);
+            text-underline-offset: 4px;
             transition: text-decoration-color 0.2s;
         }
 
-        html.dark a.linked { color: #5cc98e; }
-        a.linked:hover { text-decoration-color: #00603a; }
+        html.dark a.linked { 
+            color: #5cc98e; 
+            text-decoration-color: rgba(92, 201, 142, 0.3);
+        }
+        
+        a.linked:hover { text-decoration-color: currentColor; }
 
         .hero-strip {
-            width: 60px;
+            width: 48px;
             height: 4px;
             background: #00603a;
+            border-radius: 4px;
             display: block;
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
-        /* Card surfaces in dark mode */
-        html.dark .bg-white { background: var(--card-bg) !important; }
+
+
+        /* Hero uses the same typography system as the rest of the page */
+        .hero-title,
+        .hero-copy,
+        .hero-meta,
+        .hero-cta a {
+            font-family: inherit;
+        }
+
+        .hero-title {
+            letter-spacing: -0.035em;
+        }
+
+        .hero-copy {
+            font-size: 1.02rem;
+            line-height: 1.75;
+            font-weight: 500;
+        }
+
+        @media (min-width: 768px) {
+            .hero-copy {
+                font-size: 1.08rem;
+            }
+        }
+
+        .hero-cta .btn-primary,
+        .hero-cta .btn-secondary {
+            padding: 0.62rem 1.15rem;
+            min-height: 2.65rem;
+            font-size: 0.9rem;
+            border-radius: 0.65rem;
+        }
+
+        .hero-cta svg {
+            width: 1rem;
+            height: 1rem;
+        }
 
         #lightbox {
             display: none;
@@ -368,7 +389,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
             cursor: zoom-out;
             align-items: center;
             justify-content: center;
@@ -378,12 +400,14 @@
         #lightbox img {
             max-width: 90%;
             max-height: 90%;
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-            border: 2px solid white;
+            border-radius: 12px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
         }
 
         .clickable-img {
             cursor: zoom-in;
+            border-radius: 0.75rem;
+            overflow: hidden;
         }
 
         /* Skip link for accessibility */
@@ -396,13 +420,18 @@
             color: #fff;
             padding: 10px 16px;
             font-weight: 700;
+            border-radius: 0 0 8px 0;
         }
-        .skip-link:focus { left: 8px; top: 8px; }
+        .skip-link:focus { left: 0; top: 0; }
 
-        /* Visible focus rings */
         a:focus-visible, button:focus-visible {
             outline: 3px solid #00603a;
             outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        html.dark a:focus-visible, html.dark button:focus-visible {
+            outline-color: #5cc98e;
         }
     </style>
 </head>
@@ -412,45 +441,33 @@
     <a href="#main-content" class="skip-link">Skip to content</a>
 
     <!-- NAVIGATION -->
-    <header class="fixed top-0 w-full z-50 glass-nav border-b border-gray-200">
+    <header class="fixed top-0 w-full z-50 glass-nav border-b border-gray-200 transition-all duration-300">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center max-w-7xl">
             <a href="#hero"
-                class="flex items-center gap-3 text-base tracking-tighter text-accent-color font-bold hover:opacity-70 transition-opacity">
-                <img src="p.jpg" alt="Patrick Attey-Yeboah" class="w-9 h-9 object-cover"
-                    onerror="this.src='https://placehold.co/36x36/00603a/white?text=P'">
+                class="flex items-center gap-3 text-base tracking-tight text-accent-color font-bold hover:opacity-80 transition-opacity">
+                <img src="p.jpg" alt="Patrick Attey-Yeboah" class="w-10 h-10 object-cover rounded-full shadow-sm"
+                    onerror="this.src='https://placehold.co/40x40/00603a/white?text=P'">
                 P. ATTEY-YEBOAH
             </a>
-            <div class="hidden md:flex items-center space-x-7 text-xs uppercase tracking-widest font-semibold">
-                <a href="#hero" class="nav-link-item text-secondary-text hover:text-accent-color transition-colors"
-                    data-section="hero">About</a>
-                <a href="#publications"
-                    class="nav-link-item text-secondary-text hover:text-accent-color transition-colors"
-                    data-section="publications">Publications</a>
-                <a href="#research" class="nav-link-item text-secondary-text hover:text-accent-color transition-colors"
-                    data-section="research">Research</a>
-                <a href="#experience"
-                    class="nav-link-item text-secondary-text hover:text-accent-color transition-colors"
-                    data-section="experience">Experience</a>
-                <a href="#mentors" class="nav-link-item text-secondary-text hover:text-accent-color transition-colors"
-                    data-section="mentors">Mentors</a>
-                <a href="#contact" class="nav-link-item text-secondary-text hover:text-accent-color transition-colors"
-                    data-section="contact">Contact</a>
+            <div class="hidden md:flex items-center space-x-8 text-sm font-semibold">
+                <a href="#hero" class="nav-link-item text-secondary-text hover:text-accent-color transition-colors" data-section="hero">About</a>
+                <a href="#publications" class="nav-link-item text-secondary-text hover:text-accent-color transition-colors" data-section="publications">Publications</a>
+                <a href="#research" class="nav-link-item text-secondary-text hover:text-accent-color transition-colors" data-section="research">Research</a>
+                <a href="#tools" class="nav-link-item text-secondary-text hover:text-accent-color transition-colors" data-section="tools">Tools</a>
+                <a href="#experience" class="nav-link-item text-secondary-text hover:text-accent-color transition-colors" data-section="experience">Experience</a>
                 <button id="themeToggle" aria-label="Toggle dark mode"
-                    class="text-secondary-text hover:text-accent-color transition-colors">
-                    <svg id="iconSun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    class="p-2 rounded-full bg-secondary-bg text-secondary-text hover:text-accent-color transition-colors border border-gray-200">
+                    <svg id="iconSun" class="w-4 h-4 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
-                    <svg id="iconMoon" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    <svg id="iconMoon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
                     </svg>
                 </button>
             </div>
-            <button id="mobileMenuBtn" class="md:hidden text-accent-color" aria-label="Open menu">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                        d="M4 6h16M4 12h16m-7 6h7" />
+            <button id="mobileMenuBtn" class="md:hidden text-main-text p-2 bg-secondary-bg rounded-lg border border-gray-200" aria-label="Open menu" aria-expanded="false">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
             </button>
         </nav>
@@ -458,39 +475,39 @@
 
     <!-- Mobile Menu -->
     <div id="mobileMenu"
-        class="md:hidden fixed inset-0 z-40 bg-primary-bg hidden flex-col items-center justify-center space-y-8 text-2xl font-bold">
-        <a href="#hero" class="mobile-link text-secondary-text hover:text-accent-color transition-colors">About</a>
-        <a href="#publications"
-            class="mobile-link text-secondary-text hover:text-accent-color transition-colors">Publications</a>
-        <a href="#research"
-            class="mobile-link text-secondary-text hover:text-accent-color transition-colors">Research</a>
-        <a href="#experience"
-            class="mobile-link text-secondary-text hover:text-accent-color transition-colors">Experience</a>
-        <a href="#mentors" class="mobile-link text-secondary-text hover:text-accent-color transition-colors">Mentors</a>
-        <a href="#contact" class="mobile-link text-secondary-text hover:text-accent-color transition-colors">Contact</a>
-        <button id="mobileThemeToggle"
-            class="mobile-link text-secondary-text hover:text-accent-color transition-colors text-lg">Toggle theme</button>
-        <button id="closeMenu" class="mt-8 text-accent-color" aria-label="Close menu">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        class="md:hidden fixed inset-0 z-40 bg-primary-bg hidden flex-col items-center justify-center space-y-6 text-xl font-bold backdrop-blur-md bg-opacity-95">
+        <a href="#hero" class="mobile-link text-main-text hover:text-accent-color transition-colors">About</a>
+        <a href="#publications" class="mobile-link text-main-text hover:text-accent-color transition-colors">Publications</a>
+        <a href="#research" class="mobile-link text-main-text hover:text-accent-color transition-colors">Research</a>
+        <a href="#tools" class="mobile-link text-main-text hover:text-accent-color transition-colors">Tools</a>
+        <a href="#experience" class="mobile-link text-main-text hover:text-accent-color transition-colors">Experience</a>
+        <button id="mobileThemeToggle" class="mobile-link text-secondary-text hover:text-accent-color transition-colors text-base flex items-center gap-2 mt-4 bg-secondary-bg px-4 py-2 rounded-full border border-gray-200">
+            Toggle Theme
+        </button>
+        <button id="closeMenu" class="absolute top-6 right-6 text-main-text p-2 bg-secondary-bg rounded-lg" aria-label="Close menu">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
         </button>
     </div>
 
-    <main id="main-content" class="pt-20">
+    <main id="main-content" class="pt-28 pb-10">
 
         <!-- HERO -->
-        <section id="hero" class="px-6 py-20 bg-primary-bg">
+        <section id="hero" class="px-6 py-12 md:py-20 bg-primary-bg">
             <div class="container mx-auto max-w-7xl">
                 <div class="max-w-4xl">
-                    <span class="hero-strip"></span>
-                    <h1 class="text-6xl md:text-8xl mb-6 text-main-text leading-[1.0]">
+                    <span class="hero-strip fade-up"></span>
+
+                    <h1 class="hero-title text-5xl md:text-7xl lg:text-8xl mb-5 text-main-text font-bold leading-[1.06] fade-up fade-up-delay-1">
                         <span class="name-underline" id="heroName">Patrick<br>Attey-Yeboah</span>
                     </h1>
-                    <p class="section-label mb-8">Environmental Epidemiologist &amp; Data Scientist</p>
 
-                    <div class="space-y-5 text-lg text-secondary-text leading-relaxed mb-10 max-w-3xl"
-                        style="font-weight:500;">
+                    <p class="section-label hero-meta mb-8 fade-up fade-up-delay-2">
+                        Environmental Epidemiologist &amp; Data Scientist
+                    </p>
+
+                    <div class="hero-copy space-y-5 text-secondary-text mb-9 max-w-3xl fade-up fade-up-delay-3">
                         <p>
                             I am an MPhil Epidemiology student in the Biomedical Sciences Department at the University
                             of Cape Coast, working under the <a href="https://dsi-africa.org/project/30" target="_blank"
@@ -517,424 +534,268 @@
                     </div>
 
                     <!-- CTA -->
-                    <div class="flex flex-wrap gap-4 mb-10">
-                        <a href="#research"
-                            class="bg-accent-color text-white px-8 py-3 font-bold text-sm uppercase tracking-widest hover:bg-accent-dark transition-colors flex items-center space-x-2">
-                            <span>View Research</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                    d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    <div class="hero-cta flex flex-wrap gap-3 mb-11 fade-up fade-up-delay-3">
+                        <a href="#research" class="btn-primary shadow-soft">
+                            View Research
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
                             </svg>
                         </a>
-                        <a href="Patrick Attey-Yeboah CV.pdf" target="_blank" rel="noopener"
-                            class="border-2 border-accent-color text-accent-color px-8 py-3 font-bold text-sm uppercase tracking-widest hover:bg-accent-color hover:text-white transition-all">
-                            View CV
-                        </a>
-                    </div>
-
-                    <!-- Social Icons -->
-                    <div class="flex items-center flex-wrap gap-3 mb-10">
-                        <a href="mailto:niiatteyyeboah@gmail.com" class="social-btn-labeled" title="Email">
-                            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-17 4v7a2 2 0 002 2h14a2 2 0 002-2v-7" />
-                            </svg>
-                            <span>Email</span>
-                        </a>
-                        <a href="https://www.linkedin.com/in/patrick-attey-yeboah-43926a153/" target="_blank"
-                            rel="noopener" class="social-btn-labeled" title="LinkedIn">
-                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.535-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                            </svg>
-                            <span>LinkedIn</span>
-                        </a>
-                        <a href="https://x.com/attey_yeboah" target="_blank" rel="noopener" class="social-btn-labeled"
-                            title="X / Twitter">
-                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M17.53 2H21.5l-7.19 8.21L23 22h-7.19l-5.7-6.51L3.47 22H-.5l7.64-8.73L1 2h7.19l5.19 5.93L17.53 2zm-2.13 17h2.38l-6.51-7.44-2.38 2.72L15.4 19zM6.6 4H4.22l6.51 7.44 2.38-2.72L6.6 4z" />
-                            </svg>
-                            <span>X / Twitter</span>
-                        </a>
-                        <a href="https://orcid.org/0009-0000-8179-521X" target="_blank" rel="noopener"
-                            class="social-btn-labeled" title="ORCID">
-                            <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947-.947-.431-.947-.947.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.919-1.628 3.919-3.722 0-1.594-.947-3.722-3.9-3.722h-2.316z" />
-                            </svg>
-                            <span>ORCID</span>
+                        <a href="Patrick Attey-Yeboah CV.pdf" target="_blank" rel="noopener" class="btn-secondary">
+                            Download CV
                         </a>
                     </div>
 
                     <!-- Open To -->
-                    <div class="border-t-2 border-gray-100 pt-8">
-                        <p class="section-label mb-4">Open To</p>
-                        <div class="flex flex-row flex-wrap gap-4">
-                            <span class="open-to-pill">
-                                <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                                </svg>
-                                PhD Opportunities
-                            </span>
-                            <span class="open-to-pill">
-                                <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                        d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0" />
-                                </svg>
-                                Research Collaborations
-                            </span>
-                            <span class="open-to-pill">
-                                <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                        d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064" />
-                                </svg>
-                                Environmental Health Projects
-                            </span>
-                            <span class="open-to-pill">
-                                <svg class="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                        d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                                </svg>
-                                Speaking &amp; Policy Engagement
-                            </span>
+                    <div class="pt-7 border-t border-gray-200 fade-up fade-up-delay-3">
+                        <div class="flex flex-col sm:flex-row sm:items-center gap-4">
+                            <span class="text-sm font-bold text-main-text uppercase tracking-wider">Open To:</span>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="open-to-pill">Research Collaborations</span>
+                                <span class="open-to-pill">Speaking &amp; Research Chats</span>
+                                <span class="open-to-pill">Policy Engagement</span>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div class="rule"></div>
-
-        <!-- PUBLICATIONS -->
+        <!-- PUBLICATIONS (Moved right after Hero) -->
         <section id="publications" class="py-20 px-6 bg-secondary-bg">
             <div class="container mx-auto max-w-7xl">
                 <div class="mb-14 fade-up">
-                    <p class="section-label mb-3">Selected Works</p>
-                    <h2 class="text-5xl text-main-text">Publications</h2>
-                    <p class="text-sm text-secondary-text mt-4 font-medium">* denotes first or co-first author.</p>
+                    <p class="section-label mb-3">Academic Output</p>
+                    <h2 class="text-4xl md:text-5xl font-bold text-main-text">Publications</h2>
+                    <p class="text-sm text-secondary-text mt-4">* denotes first or co-first author.</p>
                 </div>
 
                 <!-- Peer-reviewed -->
                 <div class="mb-16">
-                    <p class="section-label mb-8">Peer-Reviewed Journal Articles</p>
-                    <div class="space-y-0">
-                        <div class="pub-line py-8 card-hover border border-transparent px-6 fade-up fade-up-delay-2">
-                            <div class="flex flex-col md:flex-row md:items-start gap-4">
-                                <span
-                                    class="text-accent-color font-mono text-xs font-bold mt-1 w-20 flex-shrink-0">2026</span>
+                    <div class="space-y-4">
+                        <!-- Pub 1 -->
+                        <div class="card-surface bg-primary-bg p-6 md:p-8 card-hover shadow-soft fade-up">
+                            <div class="flex flex-col md:flex-row md:items-start gap-6">
+                                <div class="bg-accent-color/10 text-accent-color px-4 py-2 rounded-lg font-mono text-sm font-bold md:w-24 text-center flex-shrink-0">2026</div>
                                 <div class="flex-1">
-                                    <h4 class="text-lg font-bold mb-2 text-main-text leading-snug">Consumption of
-                                        antioxidant-rich foods attenuates respiratory and cardiovascular health effects
-                                        in a population highly exposed to air pollution</h4>
-                                    <p class="text-sm text-secondary-text mb-2">Amegah, A. K., Yeboah, K., Quarshie, E.,
-                                        Benjamin, D. O., Amonoo, P., <strong>Attey-Yeboah, P.</strong>, ... &amp;
-                                        Kandala, N. B.</p>
-                                    <p class="text-sm font-semibold text-accent-color mb-3">Environmental Epidemiology,
-                                        2026</p>
-                                    <a href="https://doi.org/10.1097/EE9.0000000000000477" target="_blank" rel="noopener"
-                                        class="text-secondary-text text-xs font-mono uppercase tracking-wider inline-flex items-center space-x-2 hover:text-accent-color transition-colors">
-                                        <span>View DOI</span>
-                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                        </svg>
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="pub-line py-8 card-hover border border-transparent px-6 fade-up fade-up-delay-3">
-                            <div class="flex flex-col md:flex-row md:items-start gap-4">
-                                <span
-                                    class="text-accent-color font-mono text-xs font-bold mt-1 w-20 flex-shrink-0">2026</span>
-                                <div class="flex-1">
-                                    <h4 class="text-lg font-bold mb-2 text-main-text leading-snug">Spatial variability
-                                        in the association of ambient PM2.5 exposure with acute respiratory infection
-                                        among children in Sub-Saharan Africa</h4>
-                                    <p class="text-sm text-secondary-text mb-2">Adjorlolo, P. K., <strong>Attey-Yeboah,
-                                            P.*</strong>, Molitor, J., Coker, E. S., Aheto, J. M., &amp; Amegah, A. K.
-                                    </p>
-                                    <p class="text-sm font-semibold text-accent-color mb-3">Environmental Research, 2026
-                                    </p>
-                                    <a href="https://doi.org/10.1016/j.envres.2026.124297" target="_blank" rel="noopener"
-                                        class="text-secondary-text text-xs font-mono uppercase tracking-wider inline-flex items-center space-x-2 hover:text-accent-color transition-colors">
-                                        <span>View on ScienceDirect</span>
-                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                        </svg>
-                                    </a>
+                                    <h4 class="text-lg font-bold mb-2 text-main-text leading-snug">Consumption of antioxidant-rich foods attenuates respiratory and cardiovascular health effects in a population highly exposed to air pollution</h4>
+                                    <p class="text-sm text-secondary-text mb-3">Amegah, A. K., Yeboah, K., Quarshie, E., Benjamin, D. O., Amonoo, P., <strong>Attey-Yeboah, P.</strong>, ... &amp; Kandala, N. B.</p>
+                                    <div class="flex flex-wrap items-center gap-4">
+                                        <span class="text-sm font-semibold text-accent-color bg-accent-color/5 px-3 py-1 rounded-full">Environmental Epidemiology</span>
+                                        <a href="https://doi.org/10.1097/EE9.0000000000000477" target="_blank" rel="noopener" class="linked text-sm flex items-center gap-1">
+                                            View DOI <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="pub-line py-8 card-hover border border-transparent px-6 fade-up">
-                            <div class="flex flex-col md:flex-row md:items-start gap-4">
-                                <span
-                                    class="text-accent-color font-mono text-xs font-bold mt-1 w-20 flex-shrink-0">2025</span>
+                        <!-- Pub 2 -->
+                        <div class="card-surface bg-primary-bg p-6 md:p-8 card-hover shadow-soft fade-up fade-up-delay-1">
+                            <div class="flex flex-col md:flex-row md:items-start gap-6">
+                                <div class="bg-accent-color/10 text-accent-color px-4 py-2 rounded-lg font-mono text-sm font-bold md:w-24 text-center flex-shrink-0">2026</div>
                                 <div class="flex-1">
-                                    <h4 class="text-lg font-bold mb-2 text-main-text leading-snug">Spatial variability
-                                        in the association of ambient PM2.5 exposure with child undernutrition in
-                                        sub-Saharan Africa</h4>
-                                    <p class="text-sm text-secondary-text mb-2"><strong>Attey-Yeboah, P.*</strong>,
-                                        Adjorlolo, P. K., Aheto, J. M. K., Molitor, J., Coker, E. S., &amp; Amegah, A.
-                                        K.</p>
-                                    <p class="text-sm font-semibold text-accent-color mb-3">Environment International,
-                                        2025</p>
-                                    <a href="https://www.sciencedirect.com/science/article/pii/S0160412025007469"
-                                        target="_blank" rel="noopener"
-                                        class="text-secondary-text text-xs font-mono uppercase tracking-wider inline-flex items-center space-x-2 hover:text-accent-color transition-colors">
-                                        <span>View on ScienceDirect</span>
-                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                        </svg>
-                                    </a>
+                                    <h4 class="text-lg font-bold mb-2 text-main-text leading-snug">Spatial variability in the association of ambient PM2.5 exposure with acute respiratory infection among children in Sub-Saharan Africa</h4>
+                                    <p class="text-sm text-secondary-text mb-3">Adjorlolo, P. K., <strong>Attey-Yeboah, P.*</strong>, Molitor, J., Coker, E. S., Aheto, J. M., &amp; Amegah, A. K.</p>
+                                    <div class="flex flex-wrap items-center gap-4">
+                                        <span class="text-sm font-semibold text-accent-color bg-accent-color/5 px-3 py-1 rounded-full">Environmental Research</span>
+                                        <a href="https://doi.org/10.1016/j.envres.2026.124297" target="_blank" rel="noopener" class="linked text-sm flex items-center gap-1">
+                                            ScienceDirect <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="pub-line py-8 card-hover border border-transparent px-6 fade-up fade-up-delay-1">
-                            <div class="flex flex-col md:flex-row md:items-start gap-4">
-                                <span
-                                    class="text-accent-color font-mono text-xs font-bold mt-1 w-20 flex-shrink-0">2025</span>
+                        <!-- Pub 3 -->
+                        <div class="card-surface bg-primary-bg p-6 md:p-8 card-hover shadow-soft fade-up fade-up-delay-2">
+                            <div class="flex flex-col md:flex-row md:items-start gap-6">
+                                <div class="bg-accent-color/10 text-accent-color px-4 py-2 rounded-lg font-mono text-sm font-bold md:w-24 text-center flex-shrink-0">2025</div>
                                 <div class="flex-1">
-                                    <h4 class="text-lg font-bold mb-2 text-main-text leading-snug">Utility of low-cost
-                                        sensor measurement for predicting ambient PM2.5 concentrations: evidence from a
-                                        monitoring network in Accra, Ghana</h4>
-                                    <p class="text-sm text-secondary-text mb-2"><strong>Attey-Yeboah, P.*</strong>,
-                                        Afful, C., Yeboah, K., Korkpoe, C. H., Coker, E. S., Subramanian, R., &amp;
-                                        Amegah, A. K.</p>
-                                    <p class="text-sm font-semibold text-accent-color mb-3">Environmental Science:
-                                        Atmospheres, 2025</p>
-                                    <a href="https://pubs.rsc.org/en/content/articlehtml/2025/ea/d4ea00140k"
-                                        target="_blank" rel="noopener"
-                                        class="text-secondary-text text-xs font-mono uppercase tracking-wider inline-flex items-center space-x-2 hover:text-accent-color transition-colors">
-                                        <span>View on RSC</span>
-                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                        </svg>
-                                    </a>
+                                    <h4 class="text-lg font-bold mb-2 text-main-text leading-snug">Spatial variability in the association of ambient PM2.5 exposure with child undernutrition in sub-Saharan Africa</h4>
+                                    <p class="text-sm text-secondary-text mb-3"><strong>Attey-Yeboah, P.*</strong>, Adjorlolo, P. K., Aheto, J. M. K., Molitor, J., Coker, E. S., &amp; Amegah, A. K.</p>
+                                    <div class="flex flex-wrap items-center gap-4">
+                                        <span class="text-sm font-semibold text-accent-color bg-accent-color/5 px-3 py-1 rounded-full">Environment International</span>
+                                        <a href="https://www.sciencedirect.com/science/article/pii/S0160412025007469" target="_blank" rel="noopener" class="linked text-sm flex items-center gap-1">
+                                            ScienceDirect <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pub 4 -->
+                        <div class="card-surface bg-primary-bg p-6 md:p-8 card-hover shadow-soft fade-up fade-up-delay-3">
+                            <div class="flex flex-col md:flex-row md:items-start gap-6">
+                                <div class="bg-accent-color/10 text-accent-color px-4 py-2 rounded-lg font-mono text-sm font-bold md:w-24 text-center flex-shrink-0">2025</div>
+                                <div class="flex-1">
+                                    <h4 class="text-lg font-bold mb-2 text-main-text leading-snug">Utility of low-cost sensor measurement for predicting ambient PM2.5 concentrations: evidence from a monitoring network in Accra, Ghana</h4>
+                                    <p class="text-sm text-secondary-text mb-3"><strong>Attey-Yeboah, P.*</strong>, Afful, C., Yeboah, K., Korkpoe, C. H., Coker, E. S., Subramanian, R., &amp; Amegah, A. K.</p>
+                                    <div class="flex flex-wrap items-center gap-4">
+                                        <span class="text-sm font-semibold text-accent-color bg-accent-color/5 px-3 py-1 rounded-full">Environmental Science: Atmospheres</span>
+                                        <a href="https://pubs.rsc.org/en/content/articlehtml/2025/ea/d4ea00140k" target="_blank" rel="noopener" class="linked text-sm flex items-center gap-1">
+                                            RSC Link <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Under Review -->
-                <div class="mb-16">
-                    <p class="section-label mb-8">Under Review</p>
-                    <div class="border border-dashed border-accent-color/40 bg-white p-8 fade-up">
-                        <div class="flex items-start gap-4">
-                            <span
-                                class="px-3 py-1 bg-amber-50 border border-amber-200 text-amber-700 text-xs font-bold whitespace-nowrap">Under
-                                Review</span>
-                            <div>
-                                <h4 class="text-lg font-bold mb-2 text-main-text">Utility of low-cost sensor data for
-                                    air pollution source apportionment: Evidence from a major sub-Saharan African city
-                                </h4>
-                                <p class="text-sm text-secondary-text"><strong>Attey-Yeboah, P.*</strong>, Afful, C.,
-                                    Yeboah, K., Coker, E. S., &amp; Amegah, A. K.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Posters -->
-                <div>
+                <!-- Posters, Presentations & Webinars Grid -->
+                <div class="mt-20">
                     <p class="section-label mb-8">Posters, Presentations &amp; Webinars</p>
-                    <div class="grid lg:grid-cols-3 gap-8">
-                        <!-- DS-I Africa 6th -->
-                        <div class="group fade-up col-span-full mb-8 lg:mb-12 border-b-2 border-gray-100 pb-12">
-                            <div class="grid md:grid-cols-2 gap-8 items-center">
-                                <div class="space-y-4">
-                                    <div class="overflow-hidden border border-gray-200 aspect-video clickable-img"
-                                        onclick="openLightbox('DSI1.jpg')">
-                                        <img src="DSI1.jpg" alt="DS-I Africa 6th Consortium Meeting presentation"
-                                            loading="lazy"
-                                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div class="overflow-hidden border border-gray-200 aspect-video clickable-img"
-                                            onclick="openLightbox('DSI2.jpg')">
-                                            <img src="DSI2.jpg" alt="DS-I Africa Resource Café session" loading="lazy"
-                                                class="w-full h-full object-cover">
-                                        </div>
-                                        <div class="overflow-hidden border border-gray-200 aspect-video clickable-img"
-                                            onclick="openLightbox('DSI3.jpg')">
-                                            <img src="DSI3.jpg" alt="DS-I Africa poster session" loading="lazy"
-                                                class="w-full h-full object-cover">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="section-label block mb-2">6th DS-I Africa Consortium Meeting ·
-                                        Mombasa, Kenya (15–22 May 2026)</span>
-                                    <h3 class="text-2xl font-bold mb-4 leading-tight text-main-text">Contributions to the
-                                        “Data Science for Maternal, Child &amp; Environmental Health” track</h3>
-
-                                    <div class="space-y-4 text-sm text-secondary-text mb-6">
-                                        <div>
-                                            <p
-                                                class="font-bold text-accent-color uppercase tracking-wider text-[10px] mb-1">
-                                                Resource Café</p>
-                                            <p>Co-presented <strong>“DICE – Air Quality App (GhanaAQ App)”</strong> with
-                                                Gloria Langmatey, demonstrating the Ghana Urban Air Quality application
-                                                developed under the DICE Project.</p>
-                                        </div>
-                                        <div>
-                                            <p
-                                                class="font-bold text-accent-color uppercase tracking-wider text-[10px] mb-1">
-                                                Poster Session</p>
-                                            <p>Presented a poster on spatial variability in ambient PM₂.₅ exposure
-                                                effects on child undernutrition across Sub-Saharan Africa and the
-                                                moderating role of green spaces.</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex flex-wrap gap-4">
-                                        <a href="6th DSI Poster _Patrick.pdf" target="_blank" rel="noopener"
-                                            class="bg-accent-color text-white px-6 py-2.5 font-bold text-xs uppercase tracking-widest hover:bg-accent-dark transition-colors inline-flex items-center space-x-2">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                            </svg>
-                                            <span>View Poster (PDF)</span>
-                                        </a>
-                                    </div>
-                                </div>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        
+                        <!-- DSI Card -->
+                        <div class="card-surface bg-primary-bg overflow-hidden card-hover shadow-soft flex flex-col fade-up">
+                            <div class="aspect-video relative overflow-hidden bg-secondary-bg">
+                                <img src="DSI1.jpg" alt="DS-I Africa 6th Consortium Meeting" class="w-full h-full object-cover clickable-img" onclick="openLightbox('DSI1.jpg')">
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span class="text-xs font-bold text-accent-color mb-2">6th DS-I Africa · Kenya 2026</span>
+                                <h4 class="text-lg font-bold mb-3">Data Science for Maternal, Child &amp; Environmental Health</h4>
+                                <p class="text-sm text-secondary-text mb-4 flex-grow">Co-presented the DICE GhanaAQ App and presented a poster on spatial variability in PM2.5 exposure effects on child undernutrition.</p>
+                                <a href="6th DSI Poster _Patrick.pdf" target="_blank" class="text-sm font-semibold text-accent-color hover:underline flex items-center gap-1">
+                                    View Poster (PDF) &rarr;
+                                </a>
                             </div>
                         </div>
 
-                        <!-- ICAS+CAMS -->
-                        <div class="group fade-up col-span-full mb-8 lg:mb-12 border-b-2 border-gray-100 pb-12">
-                            <div class="grid md:grid-cols-2 gap-8 items-center">
-                                <div class="space-y-4">
-                                    <div class="overflow-hidden border border-gray-200 aspect-video clickable-img"
-                                        onclick="openLightbox('Cams1.jpg')">
-                                        <img src="Cams1.jpg" alt="ICAS+CAMS-Net 2024 presentation" loading="lazy"
-                                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                            onerror="this.src='icas.png'">
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div class="overflow-hidden border border-gray-200 aspect-video clickable-img"
-                                            onclick="openLightbox('Cams2.jpg')">
-                                            <img src="Cams2.jpg" alt="ICAS+CAMS-Net 2024 session" loading="lazy"
-                                                class="w-full h-full object-cover"
-                                                onerror="this.src='https://placehold.co/600x340/00603a/white?text=ICAS+2024'">
-                                        </div>
-                                        <div class="overflow-hidden border border-gray-200 aspect-video clickable-img bg-secondary-bg"
-                                            onclick="openLightbox('icas.png')">
-                                            <img src="icas.png" alt="ICAS poster" loading="lazy"
-                                                class="w-full h-full object-contain">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="section-label block mb-2">ICAS+CAMS-Net 2024 · Bengaluru, India</span>
-                                    <h3 class="text-2xl font-bold mb-4 leading-tight text-main-text">Utility of low-cost
-                                        sensor measurement for predicting ambient PM2.5</h3>
-
-                                    <div class="space-y-4 text-sm text-secondary-text mb-6">
-                                        <p>Presented research on the development of high-resolution exposure models for
-                                            Accra, Ghana. The work focused on the <strong>calibration and validation of
-                                                low-cost sensors</strong> using machine learning techniques to account
-                                            for environmental factors, bridging the data gap in Sub-Saharan African
-                                            urban environments.</p>
-                                    </div>
-
-                                    <div class="flex flex-wrap gap-4">
-                                        <a href="https://doi.org/10.1039/D4EA00140K" target="_blank" rel="noopener"
-                                            class="bg-accent-color text-white px-6 py-2.5 font-bold text-xs uppercase tracking-widest hover:bg-accent-dark transition-colors inline-flex items-center space-x-2">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                            </svg>
-                                            <span>Read Publication</span>
-                                        </a>
-                                    </div>
-                                </div>
+                        <!-- ICAS Card -->
+                        <div class="card-surface bg-primary-bg overflow-hidden card-hover shadow-soft flex flex-col fade-up fade-up-delay-1">
+                            <div class="aspect-video relative overflow-hidden bg-secondary-bg">
+                                <img src="Cams1.jpg" onerror="this.src='icas.png'" alt="ICAS+CAMS-Net 2024" class="w-full h-full object-cover clickable-img" onclick="openLightbox(this.src)">
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span class="text-xs font-bold text-accent-color mb-2">ICAS+CAMS-Net · India 2024</span>
+                                <h4 class="text-lg font-bold mb-3">Utility of low-cost sensor measurement for predicting ambient PM2.5</h4>
+                                <p class="text-sm text-secondary-text mb-4 flex-grow">Focused on calibration of low-cost sensors using machine learning techniques to bridge data gaps in African urban environments.</p>
+                                <a href="https://doi.org/10.1039/D4EA00140K" target="_blank" class="text-sm font-semibold text-accent-color hover:underline flex items-center gap-1">
+                                    Read Publication &rarr;
+                                </a>
                             </div>
                         </div>
 
-                        <!-- ISEE/ISES Atlanta -->
-                        <div class="group fade-up col-span-full mb-8 lg:mb-12 border-b-2 border-gray-100 pb-12">
-                            <div class="grid md:grid-cols-2 gap-8 items-center">
-                                <div class="space-y-4">
-                                    <div class="overflow-hidden border border-gray-200 aspect-video clickable-img"
-                                        onclick="openLightbox('atl1.jpg')">
-                                        <img src="atl1.jpg" alt="Joint ISEE/ISES 2025 Atlanta" loading="lazy"
-                                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                                            onerror="this.src='atl.png'">
-                                    </div>
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div class="overflow-hidden border border-gray-200 aspect-video clickable-img"
-                                            onclick="openLightbox('atl2.jpg')">
-                                            <img src="atl2.jpg" alt="ISEE/ISES presentation" loading="lazy"
-                                                class="w-full h-full object-cover"
-                                                onerror="this.src='https://placehold.co/600x340/00603a/white?text=ISEE+2025'">
-                                        </div>
-                                        <div class="overflow-hidden border border-gray-200 aspect-video clickable-img bg-secondary-bg"
-                                            onclick="openLightbox('atl.png')">
-                                            <img src="atl.png" alt="ISEE/ISES poster" loading="lazy"
-                                                class="w-full h-full object-contain">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div>
-                                    <span class="section-label block mb-2">Joint ISEE/ISES 2025 · Atlanta, USA</span>
-                                    <h3 class="text-2xl font-bold mb-4 leading-tight text-main-text">Spatial variability
-                                        of ambient PM2.5 and child anemia in SSA</h3>
-
-                                    <div class="space-y-4 text-sm text-secondary-text mb-6">
-                                        <p>A multi-country study examining the association between prenatal air pollution
-                                            exposure and childhood health outcomes. By integrating
-                                            <strong>satellite-derived PM2.5 data</strong> with DHS survey results, we
-                                            identified critical spatial variations in health risk across African
-                                            nations, informing targeted public health interventions.</p>
-                                    </div>
-
-                                    <div class="flex flex-wrap gap-4">
-                                        <a href="https://drive.google.com/file/d/1LV2_p1mX_fjNfspwcWKs78b6thZ2reHa/view?usp=drive_link"
-                                            target="_blank" rel="noopener"
-                                            class="bg-accent-color text-white px-6 py-2.5 font-bold text-xs uppercase tracking-widest hover:bg-accent-dark transition-colors inline-flex items-center space-x-2">
-                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                    d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                                            </svg>
-                                            <span>Download Presentation</span>
-                                        </a>
-                                    </div>
-                                </div>
+                        <!-- ISEE Card -->
+                        <div class="card-surface bg-primary-bg overflow-hidden card-hover shadow-soft flex flex-col fade-up fade-up-delay-2">
+                            <div class="aspect-video relative overflow-hidden bg-secondary-bg">
+                                <img src="atl1.jpg" onerror="this.src='atl.png'" alt="Joint ISEE/ISES 2025" class="w-full h-full object-cover clickable-img" onclick="openLightbox(this.src)">
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span class="text-xs font-bold text-accent-color mb-2">Joint ISEE/ISES · USA 2025</span>
+                                <h4 class="text-lg font-bold mb-3">Spatial variability of ambient PM2.5 and child anemia in SSA</h4>
+                                <p class="text-sm text-secondary-text mb-4 flex-grow">Integrated satellite-derived PM2.5 data with DHS survey results to identify critical spatial variations in health risk.</p>
+                                <a href="https://drive.google.com/file/d/1LV2_p1mX_fjNfspwcWKs78b6thZ2reHa/view" target="_blank" class="text-sm font-semibold text-accent-color hover:underline flex items-center gap-1">
+                                    Download Slides &rarr;
+                                </a>
                             </div>
                         </div>
 
-                        <!-- ISES Webinar -->
-                        <div class="group fade-up">
-                            <div class="overflow-hidden border border-gray-200 mb-4 aspect-video bg-accent-color/5 clickable-img"
-                                onclick="openLightbox('ises.jpg')">
-                                <img src="ises.jpg" alt="ISES Student & New Researchers Lecture Series" loading="lazy"
-                                    class="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-                                    onerror="this.src='https://placehold.co/600x340/00603a/white?text=ISES+Webinar'">
+                        <!-- ISES Webinar Card -->
+                        <div class="card-surface bg-primary-bg overflow-hidden card-hover shadow-soft flex flex-col fade-up fade-up-delay-3">
+                            <div class="aspect-video relative overflow-hidden bg-accent-color/5">
+                                <img src="ises.jpg" onerror="this.src='https://placehold.co/600x340/00603a/white?text=ISES+Webinar'" alt="ISES Webinar" class="w-full h-full object-contain clickable-img" onclick="openLightbox(this.src)">
                             </div>
-                            <span class="section-label block mb-1">ISES Student &amp; New Researchers Lecture Series ·
-                                April 22, 2026</span>
-                            <h4 class="text-base font-bold mb-3 leading-snug">Spatial Variability in the Association of
-                                PM2.5 with Acute Respiratory Infection Among Children In Sub-Saharan Africa</h4>
-                            <a href="https://www.linkedin.com/posts/international-society-of-exposure-science_airpollution-childhealth-publichealth-activity-7448414942283714561-SlsO"
-                                target="_blank" rel="noopener"
-                                class="text-accent-color text-sm font-semibold inline-flex items-center space-x-2 hover:underline">
-                                <span>View LinkedIn Post</span>
-                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                        d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                                </svg>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <span class="text-xs font-bold text-accent-color mb-2">ISES Webinar · Apr 2026</span>
+                                <h4 class="text-lg font-bold mb-3">Spatial Variability in Association of PM2.5 with Acute Respiratory Infection</h4>
+                                <p class="text-sm text-secondary-text mb-4 flex-grow">Presented as part of the ISES Student &amp; New Researchers Lecture Series.</p>
+                                <a href="https://www.linkedin.com/posts/international-society-of-exposure-science_airpollution-childhealth-publichealth-activity-7448414942283714561-SlsO" target="_blank" rel="noopener" class="text-sm font-semibold text-accent-color hover:underline flex items-center gap-1">
+                                    View LinkedIn Post &rarr;
+                                </a>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- RESEARCH FOCUS -->
+        <section id="research" class="py-20 px-6 bg-secondary-bg">
+            <div class="container mx-auto max-w-7xl">
+                <div class="mb-14 fade-up">
+                    <p class="section-label mb-3">Methodology</p>
+                    <h2 class="text-4xl md:text-5xl font-bold text-main-text">Research &amp; Skills</h2>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6 mb-16">
+                    <div class="card-surface p-8 card-hover shadow-soft bg-white fade-up">
+                        <div class="w-14 h-14 rounded-2xl bg-blue-50 text-blue-500 flex items-center justify-center text-3xl mb-6 shadow-sm">🌬️</div>
+                        <h4 class="text-xl font-bold mb-3 text-main-text">Air Quality Monitoring</h4>
+                        <p class="text-sm text-secondary-text leading-relaxed">Developing high-resolution exposure models using low-cost sensors and ML algorithms (Random Forest, Gradient Boosting) across data-sparse African environments.</p>
+                    </div>
+                    <div class="card-surface p-8 card-hover shadow-soft bg-white fade-up fade-up-delay-1">
+                        <div class="w-14 h-14 rounded-2xl bg-green-50 text-green-500 flex items-center justify-center text-3xl mb-6 shadow-sm">👶</div>
+                        <h4 class="text-xl font-bold mb-3 text-main-text">Child Health Outcomes</h4>
+                        <p class="text-sm text-secondary-text leading-relaxed">Quantifying the links between prenatal PM2.5 exposure and childhood anemia, stunting, wasting, and respiratory outcomes using DHS survey data.</p>
+                    </div>
+                    <div class="card-surface p-8 card-hover shadow-soft bg-white fade-up fade-up-delay-2">
+                        <div class="w-14 h-14 rounded-2xl bg-purple-50 text-purple-500 flex items-center justify-center text-3xl mb-6 shadow-sm">🗺️</div>
+                        <h4 class="text-xl font-bold mb-3 text-main-text">Spatial Epidemiology</h4>
+                        <p class="text-sm text-secondary-text leading-relaxed">Applying Bayesian hierarchical spatial models (BYM/BYM2 via R-INLA) to map disease risk and identify geographically varying health determinants.</p>
+                    </div>
+                </div>
+
+                <div class="card-surface p-8 md:p-10 bg-white shadow-soft fade-up">
+                    <h4 class="text-lg font-bold mb-6 text-main-text">Core Technical Stack</h4>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="tag-chip px-4 py-2 text-sm">R (tidyverse, sf, INLA, Shiny)</span>
+                        <span class="tag-chip px-4 py-2 text-sm">Python (Pandas, Scikit-learn)</span>
+                        <span class="tag-chip px-4 py-2 text-sm">Geospatial Analysis (GIS)</span>
+                        <span class="tag-chip px-4 py-2 text-sm">Satellite Remote Sensing</span>
+                        <span class="tag-chip px-4 py-2 text-sm">Google Earth Engine</span>
+                        <span class="tag-chip px-4 py-2 text-sm">Machine Learning</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TOOLS & DASHBOARDS -->
+        <section id="tools" class="py-20 px-6 bg-primary-bg">
+            <div class="container mx-auto max-w-7xl">
+                <div class="mb-14 fade-up">
+                    <p class="section-label mb-3">Featured Work</p>
+                    <h2 class="text-4xl md:text-5xl font-bold text-main-text">Tools &amp; Dashboards</h2>
+                    <p class="text-lg text-secondary-text mt-4 max-w-2xl">Interactive solutions built to solve complex data management and visualization challenges in environmental health.</p>
+                </div>
+                
+                <div class="max-w-4xl">
+                    <!-- QC Dashboard -->
+                    <div class="card-surface p-8 lg:p-10 card-hover shadow-soft flex flex-col fade-up">
+                        <div class="flex items-center gap-3 mb-6">
+                            <span class="px-3 py-1 bg-accent-color text-white text-xs font-bold rounded-md tracking-wide">R Shiny</span>
+                            <span class="text-sm font-semibold text-secondary-text">GhanaAQ Network</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4 text-main-text">Clarity Node-S QC Dashboard</h3>
+                        
+                        <div class="space-y-4 mb-8 flex-grow">
+                            <div>
+                                <span class="text-accent-color font-bold text-sm uppercase tracking-wider block mb-1">The Problem</span>
+                                <p class="text-secondary-text text-sm">Managing high-frequency sensor data across 13 districts required manual, error-prone data cleaning and device health tracking.</p>
+                            </div>
+                            <div>
+                                <span class="text-accent-color font-bold text-sm uppercase tracking-wider block mb-1">The Solution</span>
+                                <p class="text-secondary-text text-sm">Built an interactive dashboard that fetches data via the Clarity API, applies custom QC algorithms, and maps device health spatially.</p>
+                            </div>
+                            <div>
+                                <span class="text-accent-color font-bold text-sm uppercase tracking-wider block mb-1">The Outcome</span>
+                                <p class="text-secondary-text text-sm font-medium text-main-text">Automated maintenance reporting, cutting down QA/QC time by over 60% and ensuring data integrity for researchers.</p>
+                            </div>
+                        </div>
+
+                        <div class="mt-auto">
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="tag-chip">R</span>
+                                <span class="tag-chip">Shiny</span>
+                                <span class="tag-chip">Clarity API</span>
+                                <span class="tag-chip">Leaflet</span>
+                            </div>
+                            <a href="https://ghanaaq.shinyapps.io/GhanaAQ-QC/" target="_blank" rel="noopener" class="btn-primary w-fit justify-center">
+                                Launch Live Dashboard
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
                             </a>
                         </div>
                     </div>
@@ -942,360 +803,110 @@
             </div>
         </section>
 
-        <div class="rule"></div>
-
-        <!-- RESEARCH -->
-        <section id="research" class="py-20 px-6 bg-primary-bg">
-            <div class="container mx-auto max-w-7xl">
-                <div class="mb-14 fade-up">
-                    <p class="section-label mb-3">Focus Areas</p>
-                    <h2 class="text-5xl text-main-text">Research</h2>
-                </div>
-
-                <div class="grid md:grid-cols-3 gap-0 mb-20 border border-gray-200">
-                    <div
-                        class="p-10 border-b md:border-b-0 md:border-r border-gray-200 hover:bg-secondary-bg transition-colors fade-up">
-                        <div class="text-3xl mb-6" aria-hidden="true">🌬️</div>
-                        <h4 class="text-lg font-bold mb-3">Air Quality Monitoring</h4>
-                        <p class="text-sm text-secondary-text leading-relaxed font-medium">Developing high-resolution
-                            exposure models using low-cost sensors and machine learning across data-sparse African urban
-                            environments.</p>
-                    </div>
-                    <div
-                        class="p-10 border-b md:border-b-0 md:border-r border-gray-200 hover:bg-secondary-bg transition-colors fade-up fade-up-delay-1">
-                        <div class="text-3xl mb-6" aria-hidden="true">👶</div>
-                        <h4 class="text-lg font-bold mb-3">Child Health Outcomes</h4>
-                        <p class="text-sm text-secondary-text leading-relaxed font-medium">Quantifying the links between
-                            prenatal PM2.5 exposure and childhood anemia, stunting, wasting, and respiratory outcomes
-                            across SSA.</p>
-                    </div>
-                    <div class="p-10 hover:bg-secondary-bg transition-colors fade-up fade-up-delay-2">
-                        <div class="text-3xl mb-6" aria-hidden="true">🗺️</div>
-                        <h4 class="text-lg font-bold mb-3">Spatial Epidemiology</h4>
-                        <p class="text-sm text-secondary-text leading-relaxed font-medium">Applying Bayesian
-                            hierarchical spatial models — BYM/BYM2 via R-INLA — to map disease risk and identify
-                            geographically varying health determinants.</p>
-                    </div>
-                </div>
-
-                <div class="mb-16">
-                    <p class="section-label mb-10">Skills &amp; Methods</p>
-                    <div class="grid md:grid-cols-3 gap-8">
-                        <div class="border border-gray-200 p-8 card-hover fade-up">
-                            <h4 class="text-base font-bold mb-4 text-accent-color">Air Quality Modeling</h4>
-                            <p class="text-sm text-secondary-text leading-relaxed font-medium">I calibrate low-cost
-                                sensors using machine learning — random forest and gradient boosting — to correct for
-                                humidity and temperature artifacts and improve PM2.5 and NO2 accuracy in data-sparse
-                                African settings. I apply receptor-based source apportionment methods to characterize
-                                pollution contributors and translate monitoring data into policy-relevant insights.</p>
-                        </div>
-                        <div class="border border-gray-200 p-8 card-hover fade-up fade-up-delay-1">
-                            <h4 class="text-base font-bold mb-4 text-accent-color">Bayesian Spatial &amp; Child Health
-                            </h4>
-                            <p class="text-sm text-secondary-text leading-relaxed font-medium">I apply BYM models via
-                                R-INLA to map disease risk and identify geographically varying associations between
-                                environmental exposures and health outcomes. I work extensively with DHS data to study
-                                child health outcomes, linking satellite-derived PM2.5 estimates with multilevel models
-                                respecting nested multi-country survey designs.</p>
-                        </div>
-                        <div class="border border-gray-200 p-8 card-hover fade-up fade-up-delay-2">
-                            <h4 class="text-base font-bold mb-4 text-accent-color">Statistical Programming &amp; GIS
-                            </h4>
-                            <p class="text-sm text-secondary-text leading-relaxed font-medium">I work primarily in <span
-                                    class="font-mono font-bold">R</span> — using <span class="tag-chip">INLA</span>
-                                <span class="tag-chip">spdep</span> <span class="tag-chip">tidyverse</span> <span
-                                    class="tag-chip">sf</span> <span class="tag-chip">Shiny</span> — and <span
-                                    class="font-mono font-bold">Python</span> for data pipelines, ML workflows, and API
-                                integrations. I integrate satellite-derived data with ground-level sensor measurements
-                                using GIS tools for large-scale exposure assessment.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="border-t-2 border-gray-100 pt-10 fade-up">
-                    <p class="section-label mb-6">Core Tools &amp; Technologies</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="tag-chip">R</span>
-                        <span class="tag-chip">Python</span>
-                        <span class="tag-chip">Geospatial Analysis</span>
-                        <span class="tag-chip">Satellite Remote Sensing</span>
-                        <span class="tag-chip">Machine Learning</span>
-                        <span class="tag-chip">Google Earth Engine</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="rule"></div>
-
-        <!-- TOOLS & DASHBOARDS -->
-        <section id="tools" class="py-20 px-6 bg-secondary-bg">
-            <div class="container mx-auto max-w-7xl">
-                <div class="mb-14 fade-up">
-                    <p class="section-label mb-3">Open Source</p>
-                    <h2 class="text-5xl text-main-text">Tools &amp; Dashboards</h2>
-                    <p class="text-secondary-text mt-4 max-w-2xl font-medium">Tools built for environmental
-                        monitoring, data quality assurance, and public health research.</p>
-                </div>
-                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-
-                    <!-- QC Dashboard -->
-                    <div class="bg-white border border-gray-200 p-8 card-hover flex flex-col fade-up">
-                        <span class="section-label mb-2">R Shiny App · GhanaAQ</span>
-                        <h4 class="text-xl font-bold mb-3">Clarity Node-S QC Dashboard</h4>
-                        <p class="text-sm text-secondary-text leading-relaxed mb-5 flex-grow font-medium">An interactive
-                            quality control dashboard for the Ghana Urban Air Quality sensor network. Supports CSV
-                            upload and direct Clarity API fetching, applies built-in and custom QC flags, merges QC
-                            flags with device health signals, and generates downloadable site-level maintenance
-                            reports. Includes time-series visualization and spatial sensor-health maps.</p>
-                        <a href="https://ghanaaq.shinyapps.io/GhanaAQ-QC/" target="_blank" rel="noopener"
-                            class="inline-flex items-center justify-center space-x-2 bg-accent-color text-white px-6 py-3 text-sm font-bold uppercase tracking-wider hover:bg-accent-dark transition-all w-full">
-                            <span>Launch Dashboard</span>
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                            </svg>
-                        </a>
-                    </div>
-
-                    <!-- GhanaAQ App -->
-                    <div class="bg-white border border-gray-200 p-8 card-hover flex flex-col fade-up fade-up-delay-1">
-                        <span class="section-label mb-2">Web App · DICE Project</span>
-                        <h4 class="text-xl font-bold mb-3">GhanaAQ Air Quality App</h4>
-                        <p class="text-sm text-secondary-text leading-relaxed mb-5 flex-grow font-medium">The Ghana
-                            Urban Air Quality application developed under the DICE Project, surfacing PM2.5 readings
-                            from the GhanaAQ and Breathe Accra low-cost sensor network. Co-presented at the 6th DS-I
-                            Africa Consortium Meeting Resource Café (Mombasa, 2026).</p>
-                        <span
-                            class="inline-flex items-center justify-center space-x-2 border-2 border-accent-color text-accent-color px-6 py-3 text-sm font-bold uppercase tracking-wider w-full">
-                            <span>Featured at DS-I Africa 2026</span>
-                        </span>
-                    </div>
-
-                    <!-- District Rankings -->
-                    <div class="bg-white border border-gray-200 p-8 card-hover flex flex-col fade-up fade-up-delay-2">
-                        <span class="section-label mb-2">R Shiny App · Breathe Accra</span>
-                        <h4 class="text-xl font-bold mb-3">District Rankings Dashboard</h4>
-                        <p class="text-sm text-secondary-text leading-relaxed mb-5 flex-grow font-medium">A composite
-                            scoring dashboard ranking districts across the Breathe Accra and GhanaAQ sensor networks by
-                            air-quality indicators, supporting field prioritisation and public-facing reporting across
-                            Greater Accra.</p>
-                        <span
-                            class="inline-flex items-center justify-center space-x-2 border-2 border-gray-300 text-secondary-text px-6 py-3 text-sm font-bold uppercase tracking-wider w-full">
-                            <span>Internal Tool</span>
-                        </span>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <div class="rule"></div>
-
-        <!-- EXPERIENCE + EDUCATION -->
+        <!-- EXPERIENCE -->
         <section id="experience" class="py-20 px-6 bg-primary-bg">
             <div class="container mx-auto max-w-7xl">
-                <div class="grid lg:grid-cols-12 gap-16 items-start">
-
-                    <div class="lg:col-span-7">
-                        <div class="mb-14 fade-up">
+                <div class="grid lg:grid-cols-2 gap-16">
+                    
+                    <!-- Experience Column -->
+                    <div>
+                        <div class="mb-10 fade-up">
                             <p class="section-label mb-3">Track Record</p>
-                            <h2 class="text-5xl text-main-text">Experience &amp; Affiliations</h2>
+                            <h2 class="text-4xl font-bold text-main-text">Experience</h2>
                         </div>
-
-                        <div class="space-y-0">
-                            <div
-                                class="border border-accent-color/30 bg-accent-color/5 p-8 card-hover flex flex-col md:flex-row gap-6 items-start mb-6 fade-up">
-                                <img src="ucc_logo.png" alt="Amegah Research Group, University of Cape Coast"
-                                    loading="lazy" class="w-14 h-14 object-contain flex-shrink-0"
-                                    onerror="this.src='https://placehold.co/56x56/f5f5f3/00603a?text=AL'">
-                                <div class="flex-1">
-                                    <div class="flex flex-wrap items-center gap-3 mb-1">
-                                        <span class="section-label">Research · 2022 – Present</span>
-                                        <span
-                                            class="px-2 py-0.5 bg-accent-color text-white text-xs font-bold">Current</span>
+                        
+                        <div class="space-y-6">
+                            <!-- Role 1 -->
+                            <div class="card-surface p-6 sm:p-8 card-hover shadow-soft fade-up">
+                                <div class="flex flex-col sm:flex-row gap-5 items-start">
+                                    <div class="w-14 h-14 rounded-xl bg-gray-50 border border-gray-100 flex-shrink-0 flex items-center justify-center overflow-hidden">
+                                        <img src="ucc_logo.png" alt="UCC" class="w-10 h-10 object-contain" onerror="this.src='https://placehold.co/40x40/f5f5f3/00603a?text=UCC'">
                                     </div>
-                                    <h4 class="text-xl font-bold mb-1">Research Assistant — Amegah Research Group</h4>
-                                    <p class="text-secondary-text font-semibold mb-1">University of Cape Coast, Ghana
-                                    </p>
-                                    <a href="https://x.com/AmegahLab" target="_blank" rel="noopener"
-                                        class="text-accent-color text-xs font-mono font-semibold hover:underline block mb-3">@AmegahLab</a>
-                                    <p class="text-sm text-secondary-text leading-relaxed font-medium mb-4">Contributing
-                                        to the <a href="https://dsi-africa.org/project/30" target="_blank" rel="noopener"
-                                            class="linked">DICE Project</a> — <em>Leveraging Data Science Applications
-                                            to Improve Children's Environmental Health in Sub-Saharan Africa</em> —
-                                        under the NIH DS-I Africa consortium. Research activities include spatial
-                                        epidemiology of PM2.5 and child health outcomes, multi-temporal LUR model
-                                        development, and data harmonisation across SSA DHS datasets.</p>
+                                    <div>
+                                        <div class="flex items-center gap-3 mb-1">
+                                            <span class="text-xs font-bold text-accent-color uppercase tracking-wider">2022 – Present</span>
+                                        </div>
+                                        <h4 class="text-lg font-bold text-main-text">Research Assistant</h4>
+                                        <p class="text-sm font-semibold text-secondary-text mb-3">Amegah Research Group (UCC) · DICE Project</p>
+                                        <p class="text-sm text-secondary-text leading-relaxed">Spatial epidemiology of PM2.5 and child health outcomes, multi-temporal LUR model development, and data harmonisation across SSA DHS datasets.</p>
+                                    </div>
                                 </div>
                             </div>
 
-                            <div
-                                class="border border-gray-200 p-8 card-hover flex flex-col md:flex-row gap-6 items-start mb-6 fade-up bg-secondary-bg">
-                                <img src="logo_2.png" alt="Breathe Accra" loading="lazy"
-                                    class="w-14 h-14 object-contain flex-shrink-0"
-                                    onerror="this.src='https://placehold.co/56x56/f5f5f3/00603a?text=BA'">
-                                <div class="flex-1">
-                                    <div class="flex flex-wrap items-center gap-3 mb-1">
-                                        <span class="section-label">Professional · 2023 – Present</span>
-                                        <span
-                                            class="px-2 py-0.5 bg-accent-color text-white text-xs font-bold">Current</span>
+                            <!-- Role 2 -->
+                            <div class="card-surface p-6 sm:p-8 card-hover shadow-soft fade-up fade-up-delay-1">
+                                <div class="flex flex-col sm:flex-row gap-5 items-start">
+                                    <div class="w-14 h-14 rounded-xl bg-gray-50 border border-gray-100 flex-shrink-0 flex items-center justify-center overflow-hidden">
+                                        <img src="logo_2.png" alt="Breathe Accra" class="w-10 h-10 object-contain" onerror="this.src='https://placehold.co/40x40/f5f5f3/00603a?text=BA'">
                                     </div>
-                                    <h4 class="text-xl font-bold mb-1">Data Manager</h4>
-                                    <p class="text-secondary-text font-semibold mb-3">Ghana Urban Air Quality &amp;
-                                        Breathe Accra Project</p>
-                                    <p class="text-sm text-secondary-text leading-relaxed font-medium">Leading cleaning,
-                                        validation, and spatial integration of high-frequency air quality monitoring
-                                        data from a network of Clarity Node-S low-cost sensors across Accra. Developed
-                                        QC pipelines and interactive dashboards to support field team decision-making
-                                        and research outputs.</p>
-                                    <a href="https://breatheaccra.org/team" target="_blank" rel="noopener"
-                                        class="text-accent-color text-xs font-mono font-semibold hover:underline block mt-3">breatheaccra.org/team
-                                        →</a>
-                                </div>
-                            </div>
-
-                            <div
-                                class="border border-accent-color/20 bg-accent-color/5 p-8 card-hover flex flex-col md:flex-row gap-6 items-start mb-6 fade-up fade-up-delay-1">
-                                <img src="g3.png" alt="ISEE" loading="lazy"
-                                    class="w-14 h-14 object-contain flex-shrink-0"
-                                    onerror="this.src='https://placehold.co/56x56/f5f5f3/00603a?text=ISEE'">
-                                <div>
-                                    <span class="section-label block mb-1">Affiliation · Since 2025</span>
-                                    <h4 class="text-xl font-bold mb-1">Student Member — ISEE</h4>
-                                    <p class="text-secondary-text font-semibold mb-3">International Society of
-                                        Environmental Epidemiology</p>
-                                    <a href="https://www.iseepi.org" target="_blank" rel="noopener"
-                                        class="text-accent-color text-sm font-bold hover:underline">www.iseepi.org</a>
+                                    <div>
+                                        <div class="flex items-center gap-3 mb-1">
+                                            <span class="text-xs font-bold text-accent-color uppercase tracking-wider">2023 – Present</span>
+                                        </div>
+                                        <h4 class="text-lg font-bold text-main-text">Data Manager</h4>
+                                        <p class="text-sm font-semibold text-secondary-text mb-3">Ghana Urban Air Quality &amp; Breathe Accra</p>
+                                        <p class="text-sm text-secondary-text leading-relaxed">Leading cleaning, validation, and spatial integration of high-frequency data from a network of Clarity Node-S sensors. Built QC pipelines and dashboards.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div class="lg:col-span-5">
-                        <div class="education-dock">
-                            <div class="mb-14 fade-up">
-                                <p class="section-label mb-3">Academic Journey</p>
-                                <h2 class="text-5xl text-main-text">Education</h2>
+                    <!-- Education Column -->
+                    <div>
+                        <div class="mb-10 fade-up">
+                            <p class="section-label mb-3">Academic Journey</p>
+                            <h2 class="text-4xl font-bold text-main-text">Education</h2>
+                        </div>
+
+                        <div class="relative border-l-2 border-gray-200 ml-4 space-y-10 pb-4">
+                            <!-- Edu 1 -->
+                            <div class="relative pl-8 fade-up">
+                                <div class="absolute w-4 h-4 rounded-full bg-accent-color -left-[9px] top-1 border-4 border-white dark:border-[#0f1311]"></div>
+                                <span class="inline-block px-2 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded mb-2">In Progress</span>
+                                <h4 class="text-xl font-bold text-main-text">MPhil Epidemiology</h4>
+                                <p class="text-secondary-text font-semibold mb-2">University of Cape Coast, Ghana</p>
+                                <p class="text-sm text-secondary-text leading-relaxed">Thesis: Spatial variability in the association of ambient PM2.5 exposure with child undernutrition in sub-Saharan Africa.</p>
                             </div>
 
-                            <div class="border-l-4 border-accent-color pl-6 mb-10 fade-up">
-                                <div class="flex flex-wrap items-center gap-2 mb-1">
-                                    <span class="section-label">Current</span>
-                                    <span class="px-2 py-0.5 bg-blue-100 text-blue-700 text-xs font-bold">In
-                                        Progress</span>
-                                </div>
-                                <h4 class="text-xl font-bold mb-1">MPhil Epidemiology (Year 2)</h4>
-                                <p class="text-secondary-text font-semibold mb-3">University of Cape Coast, Ghana</p>
-                                <p class="text-sm text-secondary-text leading-relaxed font-medium">Thesis: Spatial
-                                    variability in the association of ambient PM2.5 exposure with child undernutrition
-                                    in sub-Saharan Africa.</p>
-                            </div>
-
-                            <div class="border-l-4 border-gray-200 pl-6 mb-10 fade-up fade-up-delay-1">
-                                <span class="section-label block mb-1">2017 – 2021</span>
-                                <h4 class="text-xl font-bold mb-1">BSc Biomedical Sciences</h4>
-                                <p class="text-secondary-text font-semibold mb-3">University of Cape Coast, Ghana</p>
-                                <p class="text-sm text-secondary-text leading-relaxed font-medium">Foundational training
-                                    providing the biomedical grounding that underpins my approach to environmental
-                                    health research.</p>
+                            <!-- Edu 2 -->
+                            <div class="relative pl-8 fade-up fade-up-delay-1">
+                                <div class="absolute w-4 h-4 rounded-full bg-gray-300 -left-[9px] top-1 border-4 border-white dark:border-[#0f1311]"></div>
+                                <span class="block text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">2017 – 2021</span>
+                                <h4 class="text-xl font-bold text-main-text">BSc Biomedical Sciences</h4>
+                                <p class="text-secondary-text font-semibold mb-2">University of Cape Coast, Ghana</p>
+                                <p class="text-sm text-secondary-text leading-relaxed">Foundational training providing the biomedical grounding that underpins my approach to environmental health research.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <div class="rule"></div>
-
-        <!-- MENTORS -->
-        <section id="mentors" class="py-20 px-6 bg-secondary-bg">
-            <div class="container mx-auto max-w-7xl">
-                <div class="mb-14 fade-up">
-                    <p class="section-label mb-3">Academic Network</p>
-                    <h2 class="text-5xl text-main-text">Collaborators &amp; Mentors</h2>
-                </div>
-                <div class="grid md:grid-cols-3 gap-6">
-                    <div class="bg-white border border-gray-200 p-8 card-hover fade-up">
-                        <h4 class="text-lg font-bold text-accent-color mb-1">Prof. Kofi A. Amegah</h4>
-                        <p class="text-xs font-mono uppercase tracking-widest text-secondary-text mb-1">University of
-                            Cape Coast</p>
-                        <p class="text-sm text-secondary-text font-semibold mb-5">Associate Professor of Environmental
-                            &amp; Nutritional Epidemiology</p>
-                        <div class="space-y-2 text-sm">
-                            <a href="mailto:aamegah@ucc.edu.gh"
-                                class="text-accent-color font-bold hover:underline block">aamegah@ucc.edu.gh</a>
-                            <a href="https://twitter.com/kofiamegah" target="_blank" rel="noopener"
-                                class="text-gray-500 hover:text-accent-color transition-colors block">@kofiamegah</a>
-                        </div>
-                    </div>
-                    <div class="bg-white border border-gray-200 p-8 card-hover fade-up fade-up-delay-1">
-                        <h4 class="text-lg font-bold text-accent-color mb-1">Prof. Justice Moses K. Aheto</h4>
-                        <p class="text-xs font-mono uppercase tracking-widest text-secondary-text mb-1">University of
-                            Ghana</p>
-                        <p class="text-sm text-secondary-text font-semibold mb-5">Professor of Biostatistics</p>
-                        <div class="space-y-2 text-sm">
-                            <a href="mailto:justiceaheto@yahoo.com"
-                                class="text-accent-color font-bold hover:underline block">justiceaheto@yahoo.com</a>
-                            <span class="text-gray-500 block">Skype: justice.aheto</span>
-                        </div>
-                    </div>
-                    <div class="bg-white border border-gray-200 p-8 card-hover fade-up fade-up-delay-2">
-                        <h4 class="text-lg font-bold text-accent-color mb-1">Dr. Eric S. Coker</h4>
-                        <p class="text-xs font-mono uppercase tracking-widest text-secondary-text mb-1">University of
-                            Florida</p>
-                        <p class="text-sm text-secondary-text font-semibold mb-5">Assistant Professor</p>
-                        <a href="mailto:escoker@gmail.com"
-                            class="text-accent-color font-bold hover:underline text-sm block">escoker@gmail.com</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <div class="rule"></div>
 
         <!-- CONTACT -->
-        <section id="contact" class="py-20 px-6 bg-primary-bg">
-            <div class="container mx-auto max-w-7xl">
-                <div class="max-w-2xl">
-                    <p class="section-label mb-3">Get In Touch</p>
-                    <h2 class="text-5xl text-main-text mb-6 fade-up">Connect &amp; Collaborate</h2>
-                    <p class="text-lg text-secondary-text mb-10 fade-up font-medium">
-                        I am always open to discussing research collaborations, data science projects, or speaking
-                        opportunities in environmental health.
-                    </p>
-                    <div class="flex gap-4 flex-wrap fade-up">
-                        <a href="mailto:niiatteyyeboah@gmail.com" class="social-btn-labeled group" title="Email">
-                            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-17 4v7a2 2 0 002 2h14a2 2 0 002-2v-7" />
-                            </svg>
-                            <span>Email</span>
+        <section id="contact" class="py-24 px-6 bg-secondary-bg text-center">
+            <div class="container mx-auto max-w-3xl">
+                <p class="section-label mb-4 fade-up">Get In Touch</p>
+                <h2 class="text-4xl md:text-5xl font-bold text-main-text mb-6 fade-up">Let's Collaborate</h2>
+                <p class="text-lg text-secondary-text mb-10 fade-up font-medium">
+                    I am actively seeking opportunities for research collaborations, PhD positions, and data science projects in environmental health.
+                </p>
+                
+                <div class="flex flex-wrap justify-center gap-4 fade-up">
+                    <a href="mailto:niiatteyyeboah@gmail.com" class="btn-primary">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-17 4v7a2 2 0 002 2h14a2 2 0 002-2v-7" /></svg>
+                        Say Hello
+                    </a>
+                    
+                    <div class="flex gap-3 ml-2">
+                        <a href="https://www.linkedin.com/in/patrick-attey-yeboah-43926a153/" target="_blank" rel="noopener" class="social-btn" title="LinkedIn">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.535-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" /></svg>
                         </a>
-                        <a href="https://www.linkedin.com/in/patrick-attey-yeboah-43926a153/" target="_blank"
-                            rel="noopener" class="social-btn-labeled group" title="LinkedIn">
-                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.535-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                            </svg>
-                            <span>LinkedIn</span>
+                        <a href="https://x.com/attey_yeboah" target="_blank" rel="noopener" class="social-btn" title="X / Twitter">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.53 2H21.5l-7.19 8.21L23 22h-7.19l-5.7-6.51L3.47 22H-.5l7.64-8.73L1 2h7.19l5.19 5.93L17.53 2zm-2.13 17h2.38l-6.51-7.44-2.38 2.72L15.4 19zM6.6 4H4.22l6.51 7.44 2.38-2.72L6.6 4z" /></svg>
                         </a>
-                        <a href="https://x.com/attey_yeboah" target="_blank" rel="noopener"
-                            class="social-btn-labeled group" title="X / Twitter">
-                            <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                                <path
-                                    d="M17.53 2H21.5l-7.19 8.21L23 22h-7.19l-5.7-6.51L3.47 22H-.5l7.64-8.73L1 2h7.19l5.19 5.93L17.53 2zm-2.13 17h2.38l-6.51-7.44-2.38 2.72L15.4 19zM6.6 4H4.22l6.51 7.44 2.38-2.72L6.6 4z" />
-                            </svg>
-                            <span>X / Twitter</span>
-                        </a>
-                        <a href="https://orcid.org/0009-0000-8179-521X" target="_blank" rel="noopener"
-                            class="social-btn-labeled group" title="ORCID">
-                            <svg class="w-4 h-4 flex-shrink-0" viewBox="0 0 24 24" fill="currentColor">
-                                <path
-                                    d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947-.947-.431-.947-.947.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.919-1.628 3.919-3.722 0-1.594-.947-3.722-3.9-3.722h-2.316z" />
-                            </svg>
-                            <span>ORCID</span>
+                        <a href="https://orcid.org/0009-0000-8179-521X" target="_blank" rel="noopener" class="social-btn" title="ORCID">
+                            <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947-.947-.431-.947-.947.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.919-1.628 3.919-3.722 0-1.594-.947-3.722-3.9-3.722h-2.316z" /></svg>
                         </a>
                     </div>
                 </div>
@@ -1310,19 +921,16 @@
     </div>
 
     <!-- Footer -->
-    <footer class="py-10 border-t border-gray-200 bg-secondary-bg px-6">
-        <div
-            class="container mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 gap-4 font-medium">
-            <p>&copy; <span id="year"></span> Patrick Attey-Yeboah.</p>
+    <footer class="py-8 border-t border-gray-200 bg-primary-bg px-6">
+        <div class="container mx-auto max-w-7xl flex flex-col md:flex-row justify-between items-center text-sm text-gray-500 font-medium">
+            <p>&copy; <span id="year"></span> Patrick Attey-Yeboah. All rights reserved.</p>
         </div>
     </footer>
 
     <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
-        class="fixed bottom-8 right-8 w-11 h-11 bg-accent-color text-white shadow-lg flex items-center justify-center hover:bg-accent-dark transition-all z-50"
+        class="fixed bottom-8 right-8 w-12 h-12 rounded-full bg-accent-color text-white shadow-lg flex items-center justify-center hover:bg-accent-dark hover:-translate-y-1 transition-all z-50 opacity-0 pointer-events-none translate-y-4"
         title="Back to top" aria-label="Back to top">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7" />
-        </svg>
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7" /></svg>
     </button>
 
     <script>
@@ -1343,12 +951,10 @@
             }
         }
 
-        // Initial theme: stored pref, else system preference
         (function () {
             let stored = null;
             try { stored = localStorage.getItem('theme'); } catch (e) { }
-            const prefersDark = window.matchMedia &&
-                window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
             applyTheme(stored || (prefersDark ? 'dark' : 'light'));
         })();
 
@@ -1393,12 +999,15 @@
         const mobileMenuBtn = document.getElementById('mobileMenuBtn');
         const mobileMenu = document.getElementById('mobileMenu');
         const closeMenu = document.getElementById('closeMenu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
+        
         const toggleMenu = () => {
             mobileMenu.classList.toggle('hidden');
             mobileMenu.classList.toggle('flex');
             document.body.classList.toggle('overflow-hidden');
+            const isOpen = mobileMenu.classList.contains('flex');
+            mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
         };
+        
         mobileMenuBtn.addEventListener('click', toggleMenu);
         closeMenu.addEventListener('click', toggleMenu);
         document.querySelectorAll('#mobileMenu a.mobile-link').forEach(l => l.addEventListener('click', toggleMenu));
@@ -1408,13 +1017,20 @@
         const backToTop = document.getElementById('back-to-top');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
-                header.classList.add('py-2', 'shadow-sm');
+                header.classList.add('shadow-md', 'bg-opacity-95');
                 header.classList.remove('py-4');
+                header.querySelector('nav').classList.replace('py-4', 'py-2');
             } else {
-                header.classList.remove('py-2', 'shadow-sm');
+                header.classList.remove('shadow-md', 'bg-opacity-95');
                 header.classList.add('py-4');
+                header.querySelector('nav').classList.replace('py-2', 'py-4');
             }
-            backToTop.classList.toggle('visible', window.scrollY > 400);
+            
+            if (window.scrollY > 400) {
+                backToTop.classList.remove('opacity-0', 'pointer-events-none', 'translate-y-4');
+            } else {
+                backToTop.classList.add('opacity-0', 'pointer-events-none', 'translate-y-4');
+            }
         });
 
         // ---- Scroll-spy ----
@@ -1424,7 +1040,13 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     navLinks.forEach(link => {
-                        link.classList.toggle('active', link.dataset.section === entry.target.id);
+                        if(link.dataset.section === entry.target.id) {
+                            link.classList.add('text-accent-color', 'font-bold');
+                            link.classList.remove('text-secondary-text');
+                        } else {
+                            link.classList.remove('text-accent-color', 'font-bold');
+                            link.classList.add('text-secondary-text');
+                        }
                     });
                 }
             });
@@ -1448,5 +1070,4 @@
         }, 400);
     </script>
 </body>
-
 </html>
