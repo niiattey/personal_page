@@ -216,6 +216,9 @@
             border-color: transparent transparent transparent #fff; margin-left: 0.2rem;
         }
 
+        .quote-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1.5rem; }
+        .quote-grid img { width: 100%; border-radius: 0.5rem; cursor: zoom-in; background: var(--bg-soft); }
+
         /* Talks */
         .talk-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); }
         .talk img, .strip img { aspect-ratio: 16 / 9; width: 100%; object-fit: cover; border-radius: 0.5rem; background: var(--bg-soft); cursor: zoom-in; }
@@ -351,16 +354,27 @@
 
                 <div class="video">
                     <button type="button" id="playVideo" data-id="EFBPqyhtK8c" aria-label="Play documentary video">
-                        <img src="https://i.ytimg.com/vi/EFBPqyhtK8c/hqdefault.jpg" width="480" height="360" alt="Documentary video thumbnail" loading="lazy">
+                        <img src="https://i.ytimg.com/vi/EFBPqyhtK8c/hqdefault.jpg" width="480" height="360" alt="Toxic Smoke, Fragile Lives documentary thumbnail" loading="lazy">
                         <span class="play" aria-hidden="true"></span>
                     </button>
                 </div>
 
+                <span class="meta">3News · 6 October 2026</span>
+                <h3>Toxic Smoke, Fragile Lives</h3>
+                <p class="authors">A documentary by Christian Yalley</p>
                 <p class="muted">
-                    I was featured in a documentary on air pollution and public health, sharing our
-                    work on monitoring urban air quality and understanding its effects on health in Ghana.
+                    I was featured as Data Manager for Breathe Accra, speaking about what our sensor
+                    network has revealed about air pollution in Greater Accra, especially around
+                    Agbogbloshie, and why denser monitoring is needed to inform air quality policy.
                 </p>
-                <a href="https://youtu.be/EFBPqyhtK8c" target="_blank" rel="noopener" class="small">Watch on YouTube &rarr;</a>
+                <a href="https://www.youtube.com/watch?v=EFBPqyhtK8c" target="_blank" rel="noopener" class="small">Watch on YouTube &rarr;</a>
+
+                <div class="quote-grid">
+                    <img src="img/doc-sensors-thumb.webp" data-full="img/doc-sensors.webp" width="480" height="641" loading="lazy"
+                        alt="3News quote card: “We need to invest in more sensors because we need a very high spatial resolution to capture most of these pollution signatures to get rich enough data to actually improve our policy decisions with regards to air quality.” — Patrick Attey-Yeboah, Data Manager, Breathe Accra">
+                    <img src="img/doc-agbogbloshie-thumb.webp" data-full="img/doc-agbogbloshie.webp" width="480" height="641" loading="lazy"
+                        alt="3News quote card: “Among all the districts and the areas we’ve been monitoring air quality, Agbogbloshie has been the most notorious, with almost every single day being above the WHO 15 micrograms per cubic metre; annual average also being above WHO average and even the Ghana EPA standard.” — Patrick Attey-Yeboah, Data Manager, Breathe Accra">
+                </div>
             </div>
         </section>
 
@@ -588,7 +602,7 @@
         document.getElementById('playVideo').addEventListener('click', function () {
             var f = document.createElement('iframe');
             f.src = 'https://www.youtube-nocookie.com/embed/' + this.dataset.id + '?autoplay=1';
-            f.title = 'Featured documentary';
+            f.title = 'Toxic Smoke, Fragile Lives — documentary';
             f.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
             f.allowFullscreen = true;
             this.replaceWith(f);
