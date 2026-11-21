@@ -32,7 +32,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
     <!-- JSON-LD structured data -->
     <script type="application/ld+json">
@@ -78,9 +78,9 @@
             --accent-hover: #0E3E2C;
             --accent-soft: rgba(20, 83, 60, 0.08);
             --on-accent: #FFFFFF;
-            --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
-            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+            --font-serif: 'Old Standard TT', Georgia, 'Times New Roman', serif;
+            --font-sans: 'Old Standard TT', Georgia, 'Times New Roman', serif;
+            --font-mono: 'Old Standard TT', Georgia, 'Times New Roman', serif;
         }
 
         @media (prefers-color-scheme: dark) {
@@ -451,9 +451,6 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.65rem;
-            padding-bottom: 1.35rem;
-            border-bottom: 1px solid var(--border);
-            margin-bottom: 1.35rem;
         }
         .social-links a {
             display: inline-flex;
@@ -473,41 +470,6 @@
             border-color: var(--accent);
         }
         .social-links svg { width: 0.95rem; height: 0.95rem; }
-
-        .affiliations-label {
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--muted);
-            margin-bottom: 0.65rem;
-        }
-
-        .affiliations {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.65rem;
-        }
-        .affiliations a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 3.5rem;
-            padding: 0.45rem 0.6rem;
-            background: #FFFFFF;
-            border: 1px solid var(--border);
-            border-radius: 0.55rem;
-            transition: border-color 0.15s, transform 0.15s;
-        }
-        .affiliations a:hover {
-            border-color: var(--accent);
-            transform: translateY(-1px);
-        }
-        .affiliations img {
-            max-height: 2.3rem;
-            width: auto;
-            object-fit: contain;
-        }
 
         /* ───────── Media / Documentary ───────── */
         .media-layout {
@@ -1068,6 +1030,50 @@
             border-radius: 0.5rem;
         }
 
+        /* ───────── Typography: Old Standard TT, bold + accent for headings and dates ───────── */
+        body { font-size: 1.05rem; }
+        .section-title,
+        .hero-headline,
+        .hero-name,
+        .brand,
+        .media-details h3,
+        .pub-body h3,
+        .isee-feature h3,
+        .talk-card h3,
+        .research-card h3,
+        .tool-header h3,
+        .career-item h3,
+        .contact-box h2 {
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .hero-headline em { font-style: italic; font-weight: 700; }
+        .eyebrow,
+        .media-meta,
+        .pub-year,
+        .pub-journal,
+        .research-num,
+        .tool-pillars h4,
+        .career-org,
+        .media-credit,
+        .stack-label {
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .eyebrow { font-size: 0.85rem; }
+        .media-meta { font-size: 0.92rem; }
+        .pub-year { font-size: 0.95rem; }
+        .pub-journal { font-size: 0.92rem; }
+        .research-num, .tool-pillars h4, .stack-label { font-size: 0.88rem; }
+        .stack-chip, .status-pill { font-size: 0.88rem; }
+        .wip-badge { font-weight: 700; font-size: 0.78rem; }
+        .nav-links a { font-size: 0.98rem; }
+        .nav-links a.active { font-weight: 700; }
+        .pub-body h3 { font-size: 1.35rem; }
+        .talk-card h3 { font-size: 1.22rem; }
+        .btn { font-weight: 700; }
+        .pub-authors strong, .isee-list strong { font-weight: 700; color: var(--text); }
+
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
             * { transition: none !important; }
@@ -1168,19 +1174,6 @@
                             <a href="https://orcid.org/0009-0000-8179-521X" target="_blank" rel="noopener" aria-label="ORCID">
                                 <svg fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.369 4.378c.525 0 .947.431.947.947s-.422.947-.947.947-.947-.431-.947-.947.422-.947.947-.947zm-.722 3.038h1.444v10.041H6.647V7.416zm3.562 0h3.9c3.712 0 5.344 2.653 5.344 5.025 0 2.578-2.016 5.016-5.325 5.016h-3.919V7.416zm1.444 1.303v7.444h2.297c2.359 0 3.919-1.628 3.919-3.722 0-1.594-.947-3.722-3.9-3.722h-2.316z"/></svg>
                                 ORCID
-                            </a>
-                        </div>
-
-                        <div class="affiliations-label">Affiliations</div>
-                        <div class="affiliations">
-                            <a href="https://breatheaccra.org/" target="_blank" rel="noopener" title="GhanaAQ | Breathe Accra">
-                                <img src="img/logo-breathe-accra.webp" width="240" height="164" alt="GhanaAQ / Breathe Accra" loading="lazy">
-                            </a>
-                            <a href="https://directory.ucc.edu.gh/p/adeladza-kofi-amegah?tab=profile" target="_blank" rel="noopener" title="Amegah Research Group">
-                                <img src="img/logo-amegah.webp" width="240" height="228" alt="Amegah Research Group" loading="lazy">
-                            </a>
-                            <a href="https://www.ucc.edu.gh/" target="_blank" rel="noopener" title="University of Cape Coast">
-                                <img src="img/logo-ucc.webp" width="240" height="268" alt="University of Cape Coast" loading="lazy">
                             </a>
                         </div>
                     </aside>
