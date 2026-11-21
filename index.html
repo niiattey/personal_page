@@ -76,6 +76,7 @@
             --border-strong: #D0CCC0;
             --accent: #14533C;
             --accent-hover: #0E3E2C;
+            --accent-light: #3A8A68;
             --accent-soft: rgba(20, 83, 60, 0.08);
             --on-accent: #FFFFFF;
             --font-serif: 'Old Standard TT', Georgia, 'Times New Roman', serif;
@@ -95,6 +96,7 @@
                 --border-strong: #373E3A;
                 --accent: #5BC497;
                 --accent-hover: #79D4AD;
+                --accent-light: #8FDDBB;
                 --accent-soft: rgba(91, 196, 151, 0.12);
                 --on-accent: #0B1611;
             }
@@ -111,6 +113,7 @@
             --border-strong: #373E3A;
             --accent: #5BC497;
             --accent-hover: #79D4AD;
+                --accent-light: #8FDDBB;
             --accent-soft: rgba(91, 196, 151, 0.12);
             --on-accent: #0B1611;
         }
@@ -1048,18 +1051,23 @@
             color: var(--text);
         }
         .hero-headline em { font-style: italic; font-weight: 700; color: var(--accent); }
-        .eyebrow,
-        .media-meta,
         .pub-year,
-        .pub-journal,
-        .research-num,
-        .tool-pillars h4,
-        .career-org,
-        .media-credit,
-        .stack-label {
+        .tool-pillars h4 {
             font-weight: 700;
             color: var(--accent);
         }
+        /* Secondary text: lighter weight, lighter accent */
+        .eyebrow,
+        .media-meta,
+        .pub-journal,
+        .research-num,
+        .career-org,
+        .media-credit,
+        .stack-label {
+            font-weight: 400;
+            color: var(--accent-light);
+        }
+        .eyebrow { letter-spacing: 0.12em; }
         .eyebrow { font-size: 0.85rem; }
         .media-meta { font-size: 0.92rem; }
         .pub-year { font-size: 0.95rem; }
@@ -1073,6 +1081,7 @@
         .talk-card h3 { font-size: 1.22rem; }
         .btn { font-weight: 700; }
         .pub-authors strong, .isee-list strong { font-weight: 700; color: var(--text); }
+        .inline-link { font-weight: 400; }
 
         @media (prefers-reduced-motion: reduce) {
             html { scroll-behavior: auto; }
