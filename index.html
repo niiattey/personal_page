@@ -347,17 +347,18 @@
 
         .profile-top {
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            align-items: stretch;
             gap: 1.15rem;
             margin-bottom: 1.25rem;
         }
 
         .avatar-wrap {
-            width: 5.5rem;
-            height: 5.5rem;
+            width: 100%;
+            max-width: 24rem;
+            aspect-ratio: 1 / 1;
             border-radius: 0.85rem;
             overflow: hidden;
-            flex-shrink: 0;
             border: 1px solid var(--border);
             background: var(--surface-alt);
         }
